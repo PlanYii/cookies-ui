@@ -1,0 +1,114 @@
+.cookie-menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 30px;
+  list-style: none;
+  border-bottom: $menu-border-width solid $menu-border-color;
+  box-shadow: $menu-box-shadow;
+  
+  > .cookie-menu-item {
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    cursor: pointer;
+    transition: $menu-transition;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+    &.cookie-menu-item-disabled {
+      color: $menu-item-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+    &.cookie-menu-item-active,
+    &:hover {
+      color: $menu-item-active-color;
+      border-bottom: $menu-item-active-border-width solid
+        $menu-item-active-color;
+    }
+  }
+
+  .cookie-submenu-item {
+    position: relative;
+    .cookie-submenu-title {
+      display: flex;
+      align-items: center;
+    }
+    .cookie-arrow-icon {
+      transition: transform 0.25s ease-in-out;
+      margin-left: 3px;
+    }
+    &:hover {
+      .cookie-arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .cookie-vertical {
+    .cookie-arrow-icon {
+      transform: rotate(0deg) !important;
+    }
+    &.cookie-submenu-opened {
+      display: block;
+      .arrow-icon {
+        transform: rotate(180deg) !important;
+      }
+    }
+  }
+  .cookie-submenu {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+    transition: $menu-transition;
+    .cookie-menu-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+      &.cookie-menu-item-active,
+      &:hover {
+        color: $menu-item-active-color !important;
+      }
+    }
+  }
+  .cookie-submenu.cookie-submenu-opened {
+    display: block;
+  }
+}
+
+.cookie-menu-horizontal {
+  > .cookie-menu-item {
+    border-bottom: $menu-item-active-border-width solid transparent;
+  }
+  .cookie-submenu {
+    display: none;
+    position: absolute;
+    background: $white;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: $submenu-box-shadow;
+    &.cookie-submenu-opened {
+      display: block;
+      .arrow-icon {
+        transform: rotate(180deg) !important;
+      }
+    }
+  }
+}
+
+.cookie-menu-vertical {
+  flex-direction: column;
+  border-bottom: 0;
+  border-right: $menu-border-width solid $menu-border-color;
+  .cookie-menu-item {
+    border-left: $menu-border-width solid transparent;
+    &.cookie-menu-item-active,
+    &:hover {
+      border-bottom: 0;
+      border-left: $menu-item-active-border-width solid $menu-item-active-color;
+    }
+  }
+}
