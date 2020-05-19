@@ -4,11 +4,27 @@ import Alert, { AlertType } from './components/Alert/alert';
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
-
+import Tabs from './components/Tabs/tabs'
+import TabItem from './components/Tabs/tabItem'
+import './App.css'
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <Tabs>
+          <TabItem label="tab1">This is content tab1</TabItem>
+          <TabItem label="tab2" disabled>
+            This is content tab2
+          </TabItem>
+          <TabItem label="tab3">This is content tab3</TabItem>
+        </Tabs>
+        <Tabs type="card">
+          <TabItem label="tab1">This is content tab1</TabItem>
+          <TabItem label="tab2" disabled>
+            This is content tab2
+          </TabItem>
+          <TabItem label="tab3">This is content tab3</TabItem>
+        </Tabs>
         <Menu>
           <MenuItem>cool link1</MenuItem>
           <MenuItem disabled>cool link2</MenuItem>

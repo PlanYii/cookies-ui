@@ -1,0 +1,54 @@
+.cookie-tabs {
+  .cookie-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    border-bottom: $tabs-border-width solid $tabs-border-color;
+    .cookie-tabs-nav-item {
+      display: block;
+      padding: $tabs-nav-item-padding-y $tabs-nav-item-padding-x;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        color: $tabs-active-color;
+      }
+      &.cookie-tabs-nav-item-active {
+        color: $tabs-active-color;
+      }
+      &.cookie-tabs-nav-item-disabled {
+        color: #6c757d;
+        pointer-events: none;
+        cursor: default;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.cookie-nav-line {
+  .cookie-tabs-nav-item {
+    &.cookie-tabs-nav-item-active {
+      border-bottom: $tabs-nva-item-border-width solid $tabs-active-color;
+    }
+  }
+}
+
+.cookie-nav-card {
+  .cookie-tabs-nav-item {
+    border: 1px solid transparent;
+    margin-bottom: -1px;
+    &.cookie-tabs-nav-item-active {
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      background-color: #fff;
+      border-color: #dee2e6 #dee2e6 #fff;
+    }
+  }
+}
+
+.cookie-tabs-content {
+  margin-top: 1rem;
+}
