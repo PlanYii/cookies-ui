@@ -1,0 +1,38 @@
+.cookie-alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid $gray-300;
+  line-height: $line-height-base;
+  border-radius: 0.25rem;
+  background-color: $white;
+  color: $white;
+  font-weight: $font-weight-normal;
+}
+
+.cookie-alert-success {
+  background-color: $success;
+}
+
+.cookie-alert-default {
+  background-color: $primary;
+}
+.cookie-alert-danger {
+  background-color: $danger;
+}
+.cookie-alert-warning {
+  background-color: $warning;
+}
+.cookie-alert-closable {
+  position: absolute;
+  font-size: 10px;
+  right: 2px;
+  top: 0;
+}
+.cookie-alert-description {
+  font-size: 14px;
+}
+.cookie-alert-title {
+  display: block;
+  font-size: 16px;
+}

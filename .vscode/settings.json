@@ -1,0 +1,8 @@
+{
+  "eslint.validate": [
+    "javascirpt",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ]
+}
