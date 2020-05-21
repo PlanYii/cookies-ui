@@ -25,9 +25,11 @@
 }
 .cookie-alert-closable {
   position: absolute;
-  font-size: 10px;
-  right: 2px;
-  top: 0;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 14px;
+  right: 6px;
+  top: 6px;
 }
 .cookie-alert-description {
   font-size: 14px;

@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import Icon from '../Icon/icon';
+import Transition, { AnimationName } from '../Transition/transition';
 
-export enum AlertType {
-  Success = 'success',
-  Default = 'default',
-  Info = 'danger',
-  Warning = 'warning',
-}
+export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 
-interface BaseAlertProps
+interface AlertProps
   extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'title'> {
   type?: AlertType;
   closable?: boolean;
@@ -16,9 +13,11 @@ interface BaseAlertProps
   description?: string;
   className?: string;
   onClose?: Function;
+  animation?: AnimationName;
+  timeout?: number;
 }
 
-const Alert: React.FC<BaseAlertProps> = (props) => {
+const Alert: React.FC<AlertProps> = (props) => {
   const {
     type,
     closable,
@@ -26,41 +25,42 @@ const Alert: React.FC<BaseAlertProps> = (props) => {
     description,
     className,
     onClose,
+    animation,
+    timeout = 300,
     ...restProps
   } = props;
   const classes = classNames('cookie-alert', className, {
-    [`cookie-alert-${type}`]: AlertType,
+    [`cookie-alert-${type}`]: type,
   });
   const [show, setShow] = useState(true);
 
   return (
-    <>
-      {show ? (
-        <div className={classes} {...restProps}>
-          <span className="cookie-alert-title">{title}</span>
-          {description ? (
-            <span className="cookie-alert-description">{description}</span>
-          ) : null}
-          {closable ? (
-            <span
-              className="cookie-alert-closable"
-              onClick={() => {
-                setShow(false);
-                onClose && onClose();
-              }}
-            >
-              关闭
-            </span>
-          ) : null}
-        </div>
-      ) : null}
-    </>
+    <Transition in={show} animation={animation} timeout={timeout}>
+      <div className={classes} {...restProps}>
+        <span className="cookie-alert-title">{title}</span>
+        {description ? (
+          <span className="cookie-alert-description">{description}</span>
+        ) : null}
+        {closable ? (
+          <span
+            className="cookie-alert-closable"
+            onClick={() => {
+              setShow(false);
+              onClose && onClose();
+            }}
+          >
+            <Icon icon="times" />
+          </span>
+        ) : null}
+      </div>
+    </Transition>
   );
 };
 
 Alert.defaultProps = {
-  type: AlertType.Default,
+  type: 'default',
   closable: false,
+  animation: 'zoom-in-left',
 };
 
 export default Alert;

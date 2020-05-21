@@ -1,7 +1,9 @@
 import React, { useContext, useState, FunctionComponentElement } from 'react';
 import classNames from 'classnames';
+import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
+import Icon from '../Icon/icon';
 
 export interface SubMenuProps {
   index?: string;
@@ -16,14 +18,17 @@ const SubMenu: React.FC<SubMenuProps> = ({
   children,
 }) => {
   const context = useContext(MenuContext);
-  const openSubMenus = context.defaultOpenSubMenus as Array<string>
-  const isOpend = (index && context.mode === 'vertical') ? openSubMenus.includes(index) : false;
+  const openSubMenus = context.defaultOpenSubMenus as Array<string>;
+  const isOpend =
+    index && context.mode === 'vertical' ? openSubMenus.includes(index) : false;
   const [menuOpen, setMenuOpen] = useState(isOpend);
   const classes = classNames(
     'cookie-menu-item cookie-submenu-item',
     className,
     {
-      'cookie-submenu-active': context.index === index,
+      'cookie-submenu-active': context.index.split('-')[0] === index,
+      'cookie-is-opened': menuOpen,
+      'cookie-is-vertical': context.mode === 'vertical',
     }
   );
   const handleClick = (e: React.MouseEvent) => {
@@ -59,7 +64,7 @@ const SubMenu: React.FC<SubMenuProps> = ({
       const childElement = child as FunctionComponentElement<MenuItemProps>;
       if (childElement.type.displayName === 'MenuItem') {
         return React.cloneElement(childElement, {
-          index: `${index}-${i}`
+          index: `${index}-${i}`,
         });
       } else {
         console.error(
@@ -67,7 +72,11 @@ const SubMenu: React.FC<SubMenuProps> = ({
         );
       }
     });
-    return <ul className={subMenuClasses}>{childrenComponent}</ul>;
+    return (
+      <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
+        <ul className={subMenuClasses}>{childrenComponent}</ul>
+      </Transition>
+    );
   };
 
   return (
@@ -78,6 +87,7 @@ const SubMenu: React.FC<SubMenuProps> = ({
         {...clickEvents}
       >
         {title}
+        <Icon icon="angle-down" className="cookie-arrow-icon" />
       </div>
       {renderChildern()}
     </li>
