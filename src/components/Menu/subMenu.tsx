@@ -1,4 +1,4 @@
-import React, { useContext, useState, FunctionComponentElement } from 'react';
+import React, { FC, useContext, useState, FunctionComponentElement } from 'react';
 import classNames from 'classnames';
 import Transition from '../Transition/transition';
 import { MenuContext } from './menu';
@@ -7,11 +7,13 @@ import Icon from '../Icon/icon';
 
 export interface SubMenuProps {
   index?: string;
+  /** 下拉菜单选项的文字 */
   title: string;
+  /** 下拉菜单选型的扩展类名 */
   className?: string;
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({
+export const SubMenu: FC<SubMenuProps> = ({
   index,
   className,
   title,

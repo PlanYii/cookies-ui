@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 export interface tabItemProps {
-  index?: number;
+  /**	Tab选项上面的文字 */
   label: any;
+  /**	Tab选项是否被禁用 */
   disabled?: boolean;
 }
 
-const TabItem: React.FC<tabItemProps> = (props) => {
+export const TabItem: FC<tabItemProps> = (props) => {
   const { children } = props;
   return <div className="cookie-tab-panel">{children}</div>;
 };

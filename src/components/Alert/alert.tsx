@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, FC, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon/icon';
-import Transition, { AnimationName } from '../Transition/transition';
+import Transition from '../Transition/transition';
 
 export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 
-interface AlertProps
-  extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'title'> {
+interface baseAlertProps {
+  /** 类型 四种可选 针对四种不同的场景 */
   type?: AlertType;
+  /** 是否显示关闭图标 */
   closable?: boolean;
+  /** 标题 */
   title: string;
+  /** 描述 */
   description?: string;
   className?: string;
-  onClose?: Function;
-  animation?: AnimationName;
-  timeout?: number;
+  /** 关闭alert时触发的事件 */
+  onClose?: () => void;
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+type AlertProps = baseAlertProps &  Omit<HTMLAttributes<HTMLSpanElement>, 'title'> 
+/**
+ * 用于页面中展示重要的提示信息。 点击右侧的叉提示自动消失
+ * ### 引用方法
+ * ~~~js
+ * import { Alert } from 'cookie-ui'
+ * ~~~ 
+ */
+export const Alert: FC<AlertProps> = (props) => {
   const {
     type,
     closable,
@@ -25,8 +35,6 @@ const Alert: React.FC<AlertProps> = (props) => {
     description,
     className,
     onClose,
-    animation,
-    timeout = 300,
     ...restProps
   } = props;
   const classes = classNames('cookie-alert', className, {
@@ -35,7 +43,7 @@ const Alert: React.FC<AlertProps> = (props) => {
   const [show, setShow] = useState(true);
 
   return (
-    <Transition in={show} animation={animation} timeout={timeout}>
+    <Transition in={show} animation="zoom-in-top" timeout={300}>
       <div className={classes} {...restProps}>
         <span className="cookie-alert-title">{title}</span>
         {description ? (
@@ -59,8 +67,7 @@ const Alert: React.FC<AlertProps> = (props) => {
 
 Alert.defaultProps = {
   type: 'default',
-  closable: false,
-  animation: 'zoom-in-left',
+  closable: true
 };
 
 export default Alert;
