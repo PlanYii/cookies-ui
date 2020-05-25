@@ -17,6 +17,14 @@
 @import '../components/Tabs/style';
 // Icon
 @import '../components/Icon/style';
+// Input
+@import '../components/Input/style';
+// AutoComplete
+@import '../components/AutoComplete/style';
+// Upload
+@import '../components/Upload/style';
+// Progress
+@import '../components//Progress/style';
 
 // story table
 .info-table {
@@ -33,4 +41,8 @@
   padding: 0.25rem;
   text-align: left;
   vertical-align: top;
+}
+.info-table-monospace {
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+  font-size: 0.88em;
 }
