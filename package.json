@@ -13,10 +13,10 @@
     "UI",
     "React"
   ],
-  "homepage": "https://github.com/cookRiceYu/cookie-ui",
+  "homepage": "https://github.com/cookRiceYu/cookies-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cookRiceYu/cookie-ui"
+    "url": "https://github.com/cookRiceYu/cookies-ui"
   },
   "files": [
     "dist"
